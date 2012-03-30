@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+
+Project("{05D49350-E9DB-CF83-0200-5068930AE1F7}") = "StringSDK_7_7", "StringSDK_7_7.csproj", "{22AA3136-14F0-AE14-231A-6935FF843706}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22AA3136-14F0-AE14-231A-6935FF843706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22AA3136-14F0-AE14-231A-6935FF843706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22AA3136-14F0-AE14-231A-6935FF843706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22AA3136-14F0-AE14-231A-6935FF843706}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	
+EndGlobal

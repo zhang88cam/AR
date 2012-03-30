@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shader/turbineOrder.shader">
+    <Files>
+      <File FileName="Assets/Plugins/CoreLocation/CoreLocationManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CameraRotator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/LocationListener.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CoornidatesGUIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MainGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets/Shader/cubeOrder.shader" Line="7" Column="57" />
+      <File FileName="Assets/Shader/turbineOrder.shader" Line="14" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

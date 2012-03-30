@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/testSupport/CoornidatesHelper.cs">
+    <Files>
+      <File FileName="Assets/testSupport/ARGUIManager.cs" Line="32" Column="1" />
+      <File FileName="Assets/testSupport/LocationListener.cs" Line="30" Column="5" />
+      <File FileName="Assets/testSupport/CoreLocationGUIManager.cs" Line="38" Column="43" />
+      <File FileName="Assets/Plugins/CoreLocation/CoreLocationManager.cs" Line="11" Column="65" />
+      <File FileName="Assets/testSupport/CoornidatesHelper.cs" Line="43" Column="27" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+
+Project("{902F93A6-F5BB-9BE7-E241-9B50F169E640}") = "AR_Unity 2", "Assembly-CSharp-firstpass-vs.csproj", "{F3CAE1FB-3DF6-41C6-2470-ACB392C132D4}"
+EndProject
+Project("{902F93A6-F5BB-9BE7-E241-9B50F169E640}") = "AR_Unity 2", "Assembly-CSharp-vs.csproj", "{4DC1DFA8-9402-4AE1-E6A9-D4424218A3D5}"
+EndProject
+Project("{902F93A6-F5BB-9BE7-E241-9B50F169E640}") = "AR_Unity 2", "Assembly-CSharp-Editor-vs.csproj", "{1E7FCC9C-5E1B-CAC1-3A4F-6D6E97ACFDA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3CAE1FB-3DF6-41C6-2470-ACB392C132D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3CAE1FB-3DF6-41C6-2470-ACB392C132D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3CAE1FB-3DF6-41C6-2470-ACB392C132D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3CAE1FB-3DF6-41C6-2470-ACB392C132D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC1DFA8-9402-4AE1-E6A9-D4424218A3D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC1DFA8-9402-4AE1-E6A9-D4424218A3D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC1DFA8-9402-4AE1-E6A9-D4424218A3D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC1DFA8-9402-4AE1-E6A9-D4424218A3D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E7FCC9C-5E1B-CAC1-3A4F-6D6E97ACFDA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E7FCC9C-5E1B-CAC1-3A4F-6D6E97ACFDA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E7FCC9C-5E1B-CAC1-3A4F-6D6E97ACFDA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E7FCC9C-5E1B-CAC1-3A4F-6D6E97ACFDA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	
+EndGlobal

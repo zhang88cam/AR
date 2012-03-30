@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>9.0.21022</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{22AA3136-14F0-AE14-231A-6935FF843706}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace>Irrelevant</RootNamespace>
+	<AssemblyName>Irrelvant</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_3_3_0;UNITY_3_3;UNITY_EDITOR;ENABLE_PROFILER;UNITY_IOS;UNITY_IPHONE;ENABLE_GENERICS;ENABLE_NETWORK;ENABLE_WWW</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="UnityEngine">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+	<Reference Include="Boo.Lang">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/Boo.Lang.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityScript">
+	  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Mono/lib/mono/unity/UnityScript.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <None Include="Assets\Editor\NativeToolkit\PUT_NATIVE_RESOURCES_HERE.txt" />
+     <Compile Include="Assets\Editor\Prime31\P31MenuItem.cs" />
+     <Compile Include="Assets\Editor\Prime31\PListEditor.cs" />
+     <Compile Include="Assets\Editor\Prime31\Prime31PlistHelperWizard.cs" />
+     <Compile Include="Assets\Plugins\AR\ARBinding.cs" />
+     <Compile Include="Assets\Plugins\CoreLocation\CoreLocationBinding.cs" />
+     <Compile Include="Assets\Plugins\CoreLocation\CoreLocationData.cs" />
+     <Compile Include="Assets\Plugins\CoreLocation\CoreLocationManager.cs" />
+     <Compile Include="Assets\Plugins\DeviceMotion\DeviceMotionBinding.cs" />
+     <Compile Include="Assets\Plugins\NativeToolkit\NativeToolkitBinding.cs" />
+     <Compile Include="Assets\Plugins\NativeToolkit\NativeToolkitManager.cs" />
+     <Compile Include="Assets\Scripts\CameraRotator.cs" />
+     <Compile Include="Assets\Scripts\Radar.cs" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\CameraRelativeControl.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\FirstPersonControl.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\FollowTransform.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\Joystick.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\ObliqueNear.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\PlayerRelativeControl.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\RollABall.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\RotationConstraint.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\SmoothFollow2D.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\TapControl.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Scripts\ZoomCamera.js" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Particles Additive Culled.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
+     <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Vertex Colored.shader" />
+     <Compile Include="Assets\testSupport\ARGUIManager.cs" />
+     <Compile Include="Assets\testSupport\ARGUIManagerThree.cs" />
+     <Compile Include="Assets\testSupport\ARGUIManagerTwo.cs" />
+     <Compile Include="Assets\testSupport\CalculateHelper.cs" />
+     <Compile Include="Assets\testSupport\CoornidatesGUIManager.cs" />
+     <Compile Include="Assets\testSupport\CoornidatesHelper.cs" />
+     <Compile Include="Assets\testSupport\CoreLocationGUIManager.cs" />
+     <None Include="Assets\testSupport\CoreLocationGUIManagerJS.js" />
+     <Compile Include="Assets\testSupport\DeviceMotionGUIManager.cs" />
+     <Compile Include="Assets\testSupport\DeviceMotionGUIManager2.cs" />
+     <Compile Include="Assets\testSupport\FPSHUD.cs" />
+     <Compile Include="Assets\testSupport\LevelTwoGUIManager.cs" />
+     <Compile Include="Assets\testSupport\LocationListener.cs" />
+     <Compile Include="Assets\testSupport\NativeHelperGUIManager.cs" />
+     <Compile Include="Assets\testSupport\Rotator.cs" />
+     <None Include="Assets\READ_ME.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
+	
