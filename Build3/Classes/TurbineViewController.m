@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
     NSLog(@"Load test view controller");
-    // Do any additional setup after loading the view from its nib.
+    // Do any addi tional setup after loading the view from its nib.
     TurbineMasterViewController *masterViewController = [[TurbineMasterViewController alloc] initWithNibName:@"TurbineMasterViewController" bundle:nil];
     UINavigationController *masterNavController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
     TurbineDetailViewController *detailViewController = [[TurbineDetailViewController alloc] initWithNibName:@"TurbineDetailViewController" bundle:nil];

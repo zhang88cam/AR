@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface TurbineEditableCell : UITableViewCell <UITextFieldDelegate>
+{
+    UILabel *titleLabel_;
+    UITextField *textField_;
+    NSIndexPath *indexPath_;
+    id delegate_;
+    
+}
 
 @property(nonatomic, retain) UILabel *titleLabel;
 @property (nonatomic, retain) UITextField *textField;

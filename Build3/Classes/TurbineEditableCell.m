@@ -10,17 +10,19 @@
 
 @implementation TurbineEditableCell
 
-@synthesize titleLabel = _titleLabel;
-@synthesize textField = _textField;
-@synthesize  indexPath = _indexPath;
-@synthesize delegate = _delegate;
+@synthesize titleLabel = titleLabel_;
+@synthesize textField = textField_;
+@synthesize  indexPath = indexPath_;
+@synthesize delegate = delegate_;
+
+#pragma mark -
 
 - (void)dealloc
 {
-    [_titleLabel release];
-    [_textField release];
-    [_indexPath release];
-    [_delegate release];
+    [titleLabel_ release], titleLabel_ = nil;
+    [textField_ release], textField_ = nil;
+    [indexPath_ release], indexPath_ = nil;
+    [delegate_ release], delegate_ = nil;
     [super dealloc];
 }
 
@@ -30,26 +32,26 @@
     if (self) {
         // Initialization code
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 95, 25)];
-        [_titleLabel setBackgroundColor:[UIColor clearColor]];
-        [_titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
-        [_titleLabel setTextAlignment:UITextAlignmentRight];
-        [self addSubview:_titleLabel];
+        [self.titleLabel setBackgroundColor:[UIColor clearColor]];
+        [self.titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
+        [self.titleLabel setTextAlignment:UITextAlignmentRight];
+        [self addSubview:self.titleLabel];
         
         self.textField = [[UITextField alloc] initWithFrame: CGRectMake(150, 10, 200, 25)];
-        _textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        _textField.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        _textField.clearsOnBeginEditing = NO;
-        [_textField setClearButtonMode:UITextFieldViewModeWhileEditing];
-        [_textField setFont:[UIFont fontWithName:@"Helvetica" size:12]];
-        [_textField setBackgroundColor:[UIColor clearColor]];
+        self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        self.textField.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        self.textField.clearsOnBeginEditing = NO;
+        [self.textField setClearButtonMode:UITextFieldViewModeWhileEditing];
+        [self.textField setFont:[UIFont fontWithName:@"Helvetica" size:12]];
+        [self.textField setBackgroundColor:[UIColor clearColor]];
         //[_textField setFont:[UIFont systemFontOfSize:12]];
         
         // FOR MWF USE DONE
-        _textField.delegate = self;
+        self.textField.delegate = self;
 
-		[_textField setReturnKeyType:UIReturnKeyDone];
+		[self.textField setReturnKeyType:UIReturnKeyDone];
         
-        [self addSubview:_textField];
+        [self addSubview:self.textField];
     }
     return self;
 }
@@ -62,12 +64,12 @@
     [super setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 
-#pragma - mark Text field delegate
+#pragma mark - Text Field Delegate
 
 - (void)textFieldDidEndEditing:(UITextField *)textField 
 {
     
-    [self.delegate performSelector:@selector(textFieldDidReturnWithIndexPath:) withObject:_indexPath];
+    [self.delegate performSelector:@selector(textFieldDidReturnWithIndexPath:) withObject:self.indexPath];
     
 }
 

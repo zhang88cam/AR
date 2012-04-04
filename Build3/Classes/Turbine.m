@@ -10,28 +10,40 @@
 
 @implementation Turbine
 
-@synthesize turbineModel = _turbineModel;
-@synthesize turbineHeight = _turbineHeight;
-@synthesize turbineLatitude = _turbineLatitude;
-@synthesize turbineLongitude = _turbineLongitude;
-@synthesize turbineAltitude = _turbineAltitude;
+@synthesize turbineModel = turbineModel_;
+@synthesize turbineHeight = turbineHeight_;
+@synthesize turbineLatitude = turbineLatitude_;
+@synthesize turbineLongitude = turbineLongitude_;
+@synthesize turbineAltitude = turbineAltitude_;
 
 
+#pragma mark -
+-(void) dealloc {
+	[turbineModel_ release], turbineModel_ = nil;
+	[turbineHeight_ release], turbineHeight_ = nil;
+    
+    [turbineLatitude_ release], turbineLatitude_ = nil;
+	[turbineLongitude_ release], turbineLongitude_ = nil;
+	[turbineAltitude_ release], turbineAltitude_ = nil;
+    
+    
+	
+	[super dealloc];
+}
 
 -(id)initWithName:(NSString *)model height:(NSString *)height latitude:(NSString *)latitude longitude:(NSString *)longitude altitude:(NSString *)altitude
 {
     if ((self = [super init])) {
-        _turbineModel = [model copy];
-        _turbineHeight = [height copy];
-        _turbineLatitude = [latitude copy];
-        _turbineLongitude = [longitude copy];
-        _turbineAltitude = [altitude copy];
+        turbineModel_ = [model copy];
+        turbineHeight_ = [height copy];
+        turbineLatitude_ = [latitude copy];
+        turbineLongitude_ = [longitude copy];
+        turbineAltitude_ = [altitude copy];
     }
     return self;
 }
 
-#pragma mark -
-#pragma mark NSCoding
+#pragma mark - NSCoding
 
 -(void) encodeWithCoder:(NSCoder *)aCoder {
 	
@@ -83,18 +95,5 @@
 }
 
 
-
--(void) dealloc {
-	[_turbineModel release];
-	[_turbineHeight release];
-    
-    [_turbineLatitude release];
-	[_turbineLongitude release];
-	[_turbineAltitude release];
-
-
-	
-	[super dealloc];
-}
 
 @end

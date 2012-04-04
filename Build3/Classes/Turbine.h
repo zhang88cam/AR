@@ -21,12 +21,12 @@
 
 @interface Turbine : NSObject <NSCoding, MKAnnotation> {
     
-    NSString *_turbineModel;
-    NSString *_turbineHeight;
+    NSString *turbineModel_;
+    NSString *turbineHeight_;
     
-    NSString *_turbineLatitude;
-    NSString *_turbineLongitude;
-    NSString *_turbineAltitude;
+    NSString *turbineLatitude_;
+    NSString *turbineLongitude_;
+    NSString *turbineAltitude_;
 
 }
 

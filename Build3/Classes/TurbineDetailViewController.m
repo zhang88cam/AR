@@ -14,6 +14,10 @@
 #import <MapKit/MapKit.h>
 
 @interface TurbineDetailViewController () <MKMapViewDelegate>
+{
+    NSArray *annotations_;
+    MKMapView *mapView_;
+}
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (retain, nonatomic) UIPopoverController *popoverController;
 @property (retain, nonatomic) NSArray *annotations;
@@ -23,18 +27,17 @@
 
 @implementation TurbineDetailViewController
 
-
-@synthesize mapView = _mapView;
-@synthesize annotations = _annotations;
+@synthesize mapView = mapView_;
+@synthesize annotations = annotations_;
 @synthesize popoverController = popoverController_;
 
-
+#pragma mark -
 - (void)dealloc
 {
 
-    [_mapView release];
+    [mapView_ release], mapView_ = nil;
     [popoverController_ release], popoverController_ = nil;
-    [_annotations release];
+    [annotations_ release], annotations_ = nil;
 
     [super dealloc];
 }
@@ -51,8 +54,6 @@
     return self;
 }
 
-
-
 #pragma mark - Synchronize Model and View
 
 - (void)updateMapView
@@ -63,13 +64,13 @@
 
 - (void)setMapView:(MKMapView *)mapView
 {
-    _mapView = mapView;
+    mapView_ = mapView;
     [self updateMapView];
 }
 
 - (void)setAnnotations:(NSArray *)annotations
 {
-    _annotations = annotations;
+    annotations_ = annotations;
     [self updateMapView];
 }
 
@@ -98,8 +99,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
+	// Navigation bar's position is not right
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"done" 
 																   style:UIBarButtonItemStyleDone 
 																  target:self 
@@ -118,10 +121,11 @@
 - (void)viewDidUnload
 {
     [self setMapView:nil];
+    [self setAnnotations:nil];
+    [self setPopoverController:nil];
 
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -130,8 +134,8 @@
     zoomLocation.latitude = 41.586817;
     zoomLocation.longitude= -87.475247;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 5.0 * METERS_PER_MILE, 5.0 * METERS_PER_MILE);
-    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];                
-    [_mapView setRegion:adjustedRegion animated:YES];   
+    MKCoordinateRegion adjustedRegion = [mapView_ regionThatFits:viewRegion];                
+    [mapView_ setRegion:adjustedRegion animated:YES];   
     
     [self updateMapView];
     [super viewWillAppear:animated];
@@ -148,8 +152,6 @@
 
 -(void)splitViewController:(MGSplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
 {
-
-    
     self.popoverController = pc;
 }
 

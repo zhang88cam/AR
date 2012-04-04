@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class TurbineDetailViewController;
-
 @class TurbineDataController;
 
 @interface TurbineMasterViewController : UITableViewController
-
-@property (strong, nonatomic) TurbineDetailViewController *detailViewController;
+{
+    TurbineDataController *dataController_;
+}
 
 @property (strong, nonatomic) TurbineDataController *dataController;
 

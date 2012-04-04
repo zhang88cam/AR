@@ -12,10 +12,14 @@
 @protocol TurbineEditViewControllerDelegate;
 
 @interface TurbineEditViewController : UITableViewController
+{
+    BOOL isAdd_;
+    NSInteger row_;
+    id <TurbineEditViewControllerDelegate> delegate_;
+}
 
 @property (nonatomic) BOOL isAdd;
 @property (nonatomic) NSInteger row;
-
 @property (assign, nonatomic) id <TurbineEditViewControllerDelegate> delegate;
 
 -(IBAction)cancel:(id)sender;

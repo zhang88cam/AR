@@ -8,8 +8,6 @@
 
 #import "TurbineMasterViewController.h"
 
-#import "TurbineDetailViewController.h"
-
 #import "TurbineDataController.h"
 
 #import "Turbine.h"
@@ -22,15 +20,12 @@
 
 @implementation TurbineMasterViewController
 
-@synthesize detailViewController = _detailViewController;
+@synthesize dataController = dataController_;
 
-@synthesize dataController = _dataController;
-
-
+#pragma mark -
 - (void)dealloc
 {
-    [_detailViewController release];
-    [_dataController release];
+    [dataController_ release], dataController_ = nil;
     [super dealloc];
 }
 
@@ -88,8 +83,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.dataController = nil;
 }
 
 
@@ -167,13 +161,6 @@
 #pragma mark - Table View Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    if (!self.detailViewController) {
-        self.detailViewController = [[[TurbineDetailViewController alloc] initWithNibName:@"TurbineDetailViewController" bundle:nil] autorelease];
-    }
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
-     */
-    
     TurbineEditViewController *editController = [[TurbineEditViewController alloc] initWithNibName:@"TurbineEditViewController" bundle:nil];
     UINavigationController *editNavController = [[UINavigationController alloc] initWithRootViewController:editController];
     editController.delegate = self;

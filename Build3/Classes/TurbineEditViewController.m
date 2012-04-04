@@ -11,26 +11,37 @@
 #import "TurbineEditableCell.h"
 
 @interface TurbineEditViewController () <TurbineTextFieldDelgate>
+{
+    NSArray *labels_;
+    NSArray *placeholders_;
+    NSMutableDictionary *textDictionary_;
+}
+
 @property (nonatomic, retain) NSArray *labels;
 @property (nonatomic, retain) NSArray *placeholders;
 @property (nonatomic, retain) NSMutableDictionary *textDictionary;
 @end
 
+
 @implementation TurbineEditViewController
-@synthesize labels = _labels;
-@synthesize placeholders = _placeholers;
-@synthesize textDictionary = _textDictionary;
-@synthesize isAdd = _isAdd;
-@synthesize row = _row;
+// public prooerties
+@synthesize isAdd = isAdd_;
+@synthesize row = row_;
+@synthesize delegate = delegate_;
 
-@synthesize delegate = _delegate;
+// Private properties
+@synthesize labels = labels_;
+@synthesize placeholders = placeholders_;
+@synthesize textDictionary = textDictionary_;
 
+
+#pragma mark -
 - (void)dealloc
 {
-    [_labels release];
-    [_placeholers release];
-    [_textDictionary release];
-    [_delegate release];
+    [labels_ release], labels_ = nil;
+    [placeholders_ release], placeholders_ = nil;
+    [textDictionary_ release], textDictionary_ = nil;
+    [delegate_ release], delegate_ = nil;
     [super dealloc];
 }
 
@@ -43,10 +54,13 @@
     return self;
 }
 
+#pragma mark - Button
+
 -(IBAction)cancel:(id)sender
 {
     [[self delegate] turbineEditViewControllerDidCancel:self];
 }
+
 -(IBAction)done:(id)sender
 {
     if (self.isAdd) {
@@ -56,6 +70,8 @@
                 [[self delegate] turbineEditViewControllerDidFinish:self model:[self.textDictionary objectForKey:[NSNumber numberWithInt:0]] height:[self.textDictionary objectForKey:[NSNumber numberWithInt:1]] latitude:[self.textDictionary objectForKey:[NSNumber numberWithInt:2]] longitude:[self.textDictionary objectForKey:[NSNumber numberWithInt:3]] altitude:[self.textDictionary objectForKey:[NSNumber numberWithInt:4]] atIndex:self.row];
     }
 }
+
+#pragma mark - Life Cycle
 
 - (void)viewDidLoad
 {
@@ -76,8 +92,8 @@
     
     self.placeholders = [NSArray arrayWithObjects:@"GE1.5",
                          @"200",
-                         @"85.232",
-                         @"-4343",
+                         @"41.2324",
+                         @"-87.2324",
                          @"0",
                          nil];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"done" 
@@ -99,16 +115,21 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.delegate = nil;
+    self.labels = nil;
+    self.placeholders = nil;
+    self.textDictionary = nil;
+
 }
+
+#pragma mark - Rotation Support
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table View Data Source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -148,12 +169,12 @@
     return cell;
 }
 
-#pragma mark - Turbine text field delegate
+#pragma mark - Turbine Text Field Delegate
 -(void)textFieldDidReturnWithIndexPath:(NSIndexPath *)turbineIndexPath
 {
       UITextField *textField = [(TurbineEditableCell *)[self.tableView cellForRowAtIndexPath:turbineIndexPath] textField];
     NSLog(@"------%@", textField.text);
-    if (!_textDictionary) {
+    if (!textDictionary_) {
         self.textDictionary = [[NSMutableDictionary alloc] init];
     }
     NSNumber *rowNum = [[NSNumber alloc] initWithInt:turbineIndexPath.row];
