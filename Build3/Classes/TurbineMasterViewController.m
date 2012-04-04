@@ -33,14 +33,7 @@
     [_dataController release];
     [super dealloc];
 }
-//- (void)selectFirstRow
-//{
-//	if ([self.tableView numberOfSections] > 0 && [self.tableView numberOfRowsInSection:0] > 0) {
-//		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//		[self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-//		[self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
-//	}
-//}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -62,6 +55,8 @@
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
+
+#pragma mark - button
 
 -(IBAction)add:(id)sender
 {
@@ -87,7 +82,6 @@
                                   action:@selector(add:)];
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
-    
 
 }
 
@@ -98,31 +92,13 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return YES;
 }
+#pragma mark - Table View Data Source
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -147,11 +123,7 @@
     
     // Configure the cell.
     Turbine *turbineAtIndex = [self.dataController objectInMasterTurbineListAtIndex:indexPath.row];
-    NSString *detailText = turbineAtIndex.turbineLatitude;
-    NSString *detailedText = [detailText  stringByAppendingFormat:turbineAtIndex.turbineLongitude];
-    cell.textLabel.text = detailedText;
-//    
-//    cell.detailTextLabel.text = detailedText;
+    cell.detailTextLabel.text = [turbineAtIndex.turbineLatitude stringByAppendingString:turbineAtIndex.turbineLongitude];
     return cell;
 }
 
@@ -192,6 +164,7 @@
 }
 */
 
+#pragma mark - Table View Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     /*
@@ -214,9 +187,10 @@
 
 }
 
-#pragma mark - Edit turbine delegate
+#pragma mark - Edit Turbine Delegate
 - (void)turbineEditViewControllerDidCancel:(TurbineEditViewController *)controller
 {
+    [self.tableView reloadData];
     [self dismissModalViewControllerAnimated:YES];
     
 }

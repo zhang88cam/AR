@@ -17,6 +17,5 @@
 @property (strong, nonatomic) TurbineDetailViewController *detailViewController;
 
 @property (strong, nonatomic) TurbineDataController *dataController;
-//- (void)selectFirstRow;
 
 @end

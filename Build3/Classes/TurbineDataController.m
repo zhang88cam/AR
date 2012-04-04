@@ -40,16 +40,14 @@
     
     // random generate a turbine list
     for (int i = 0; i < 30; i ++) {
-        Turbine *aTurbine = [[Turbine alloc] init];
-        int y =  (arc4random() % 200) + 8523;
+        int x =  -(arc4random() % 20) - 8735;
+        int y = (arc4random() % 20) + 4150;
         float latitude = y / 100.0;
-        int x = -(arc4random() % 200) - 4234;
         float longitude = x / 100.0;
-        aTurbine.turbineModel = @"1";
-        aTurbine.turbineHeight = @"200";
-        aTurbine.turbineLatitude = [NSString stringWithFormat:@"%f", latitude];
-        aTurbine.turbineLongitude = [NSString stringWithFormat:@"%f", longitude];
-        aTurbine.turbineAltitude = @"0";
+        NSString *latitudeString = [NSString stringWithFormat:@"%f", latitude];
+        NSString *longitudeString = [NSString stringWithFormat:@"%f", longitude];
+        Turbine *aTurbine = [[Turbine alloc] initWithName:@"1" height:@"200" latitude:latitudeString longitude:longitudeString altitude:@"0"];
+
         [self addTurbine:aTurbine];
         [aTurbine release];
         

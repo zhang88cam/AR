@@ -359,6 +359,17 @@
 			name = AR;
 			sourceTree = "<group>";
 		};
+		198C9F67152C022900172BBD /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				96B17AE71524EBD2006984EA /* Turbine.h */,
+				96B17AE81524EBD2006984EA /* Turbine.m */,
+				96B17AE91524EBD2006984EA /* TurbineDataController.h */,
+				96B17AEA1524EBD2006984EA /* TurbineDataController.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,10 +458,7 @@
 				1989BFFC15253F0F00237F02 /* AR */,
 				1989BFFA15251BBC00237F02 /* MGSplitController */,
 				1989BFFB15251BDF00237F02 /* Controllers */,
-				96B17AE71524EBD2006984EA /* Turbine.h */,
-				96B17AE81524EBD2006984EA /* Turbine.m */,
-				96B17AE91524EBD2006984EA /* TurbineDataController.h */,
-				96B17AEA1524EBD2006984EA /* TurbineDataController.m */,
+				198C9F67152C022900172BBD /* Data */,
 			);
 			path = Classes;
 			sourceTree = SOURCE_ROOT;

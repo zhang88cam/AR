@@ -18,6 +18,18 @@
 
 
 
+-(id)initWithName:(NSString *)model height:(NSString *)height latitude:(NSString *)latitude longitude:(NSString *)longitude altitude:(NSString *)altitude
+{
+    if ((self = [super init])) {
+        _turbineModel = [model copy];
+        _turbineHeight = [height copy];
+        _turbineLatitude = [latitude copy];
+        _turbineLongitude = [longitude copy];
+        _turbineAltitude = [altitude copy];
+    }
+    return self;
+}
+
 #pragma mark -
 #pragma mark NSCoding
 
@@ -53,7 +65,7 @@
 
 - (NSString *)title
 {
-    return self.turbineModel;
+    return self.turbineModel ;
 }
 
 - (NSString *)subtitle
@@ -79,6 +91,7 @@
     [_turbineLatitude release];
 	[_turbineLongitude release];
 	[_turbineAltitude release];
+
 
 	
 	[super dealloc];

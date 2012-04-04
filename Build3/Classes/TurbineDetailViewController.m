@@ -9,6 +9,7 @@
 #import "TurbineDetailViewController.h"
 #import "TurbineMasterViewController.h"
 #import "TurbineDataController.h"
+#import "Turbine.h"
 #import "NativeToolkit.h"
 #import <MapKit/MapKit.h>
 
@@ -22,8 +23,7 @@
 
 @implementation TurbineDetailViewController
 
-@synthesize detailItem = _detailItem;
-@synthesize detailDescriptionLabel = _detailDescriptionLabel;
+
 @synthesize mapView = _mapView;
 @synthesize annotations = _annotations;
 @synthesize popoverController = popoverController_;
@@ -31,14 +31,26 @@
 
 - (void)dealloc
 {
-    [_detailItem release];
-    [_detailDescriptionLabel release];
+
     [_mapView release];
     [popoverController_ release], popoverController_ = nil;
     [_annotations release];
 
     [super dealloc];
 }
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = NSLocalizedString(@"Map", @"Map");
+        TurbineMasterViewController *masterPopoverTurbineVC = [[TurbineMasterViewController alloc] initWithNibName:@"TurbineMasterViewController" bundle:nil];
+        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:masterPopoverTurbineVC];
+        self.annotations = masterPopoverTurbineVC.dataController.masterTurbineList;
+    }
+    return self;
+}
+
 
 
 #pragma mark - Synchronize Model and View
@@ -49,19 +61,25 @@
     if (self.annotations) [self.mapView addAnnotations:self.annotations];
 }
 
-//- (void)setMapView:(MKMapView *)mapView
-//{
-//    _mapView = mapView;
-//    [self updateMapView];
-//}
+- (void)setMapView:(MKMapView *)mapView
+{
+    _mapView = mapView;
+    [self updateMapView];
+}
 
-//- (void)setAnnotations:(NSArray *)annotations
-//{
-//    _annotations = annotations;
-//    [self updateMapView];
-//}
+- (void)setAnnotations:(NSArray *)annotations
+{
+    _annotations = annotations;
+    [self updateMapView];
+}
 
-#pragma mark -
+- (void)configureView
+{
+    // Update the user interface for the detail item.
+    
+    
+}
+#pragma mark - Button
 -(IBAction)doneAction:(id)sender
 {
     //Back to Unity
@@ -73,40 +91,7 @@
 {
     [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
-/*
 
-#pragma mark - Managing the detail item
-- (void)setDetailItem:(id)newDetailItem
-{
-    if (_detailItem != newDetailItem) {
-        [_detailItem release]; 
-        _detailItem = [newDetailItem retain]; 
-
-        // Update the view.
-        [self configureView];
-    }
-
-    if (self.popoverController != nil) {
-        [self.popoverController dismissPopoverAnimated:YES];
-    }        
-}
-*/
-- (void)configureView
-{
-    // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
-//    toggleItem.title = ([splitController_ isShowingMaster]) ? @"Hide Master" : @"Show Master";
-    
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
-}
 
 #pragma mark - View lifecycle
 
@@ -126,19 +111,14 @@
     self.navigationItem.leftBarButtonItem = masterButton;
     [masterButton release];
     
-    [self configureView];
-    self.mapView.delegate = self;
-//    NSLog(@"annotations are: %@", self.annotations);
-    [self.mapView addAnnotations:self.annotations];
-
+//    [self configureView];
 
 }
 
 - (void)viewDidUnload
 {
-//    [self setMapView:nil];
-//    [toggleItem release];
-//    toggleItem = nil;
+    [self setMapView:nil];
+
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -149,53 +129,26 @@
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 41.586817;
     zoomLocation.longitude= -87.475247;
-    // 2
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
-    // 3
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 5.0 * METERS_PER_MILE, 5.0 * METERS_PER_MILE);
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];                
-    // 4
-    [_mapView setRegion:adjustedRegion animated:YES];      
+    [_mapView setRegion:adjustedRegion animated:YES];   
+    
+    [self updateMapView];
     [super viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)didReceiveMemoryWarning
 {
-    [super viewDidAppear:animated];
+    [super didReceiveMemoryWarning];
+    // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = NSLocalizedString(@"Map", @"Map");
-        TurbineMasterViewController *masterPopoverTurbineVC = [[TurbineMasterViewController alloc] initWithNibName:@"TurbineMasterViewController" bundle:nil];
-        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:masterPopoverTurbineVC];
-        self.annotations = masterPopoverTurbineVC.dataController.masterTurbineList;
-    }
-    return self;
-}
 						
-#pragma mark - Split view support
+#pragma mark - SplitView Support
 
 -(void)splitViewController:(MGSplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
 {
-//    if (barButtonItem) {
-//        barButtonItem.title = @"Master";
-//        NSMutableArray *items = [[self.toolbar items] mutableCopy];
-//        [items insertObject:barButtonItem atIndex:0];
-//        [self.toolbar setItems:items animated:YES];
-//    }
+
     
     self.popoverController = pc;
 }
@@ -204,14 +157,7 @@
 	 willShowViewController:(UIViewController *)aViewController 
   invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-	//NSLog(@"%@", NSStringFromSelector(_cmd));
-	
-//	if (barButtonItem) {
-//		NSMutableArray *items = [[self.toolbar items] mutableCopy];
-//		[items removeObject:barButtonItem];
-//		[self.toolbar setItems:items animated:YES];
-//		[items release];
-//	}
+
     self.popoverController = nil;
 }
 
@@ -219,22 +165,65 @@
 {
     
 }
-#pragma mark - MKMapViewDelegate
+
+#pragma mark - MKMapView Delegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    // if it's the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    // handle our two custom annotations
+    //
+    if ([annotation isKindOfClass:[Turbine class]]) // for Golden Gate Bridge
+    {
+        // try to dequeue an existing pin view first
+        static NSString* TurbineAnnotationIdentifier = @"turbineAnnotationIdentifier";
+        MKPinAnnotationView* pinView = (MKPinAnnotationView *)
+        [mapView dequeueReusableAnnotationViewWithIdentifier:TurbineAnnotationIdentifier];
+        if (!pinView)
+        {
+            // if an existing pin view was not available, create one
+            MKPinAnnotationView* customPinView = [[[MKPinAnnotationView alloc]
+                                                   initWithAnnotation:annotation reuseIdentifier:TurbineAnnotationIdentifier] autorelease];
+            customPinView.pinColor = MKPinAnnotationColorPurple;
+            customPinView.animatesDrop = YES;
+            customPinView.canShowCallout = YES;
+            
+
+            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [rightButton addTarget:self
+                            action:@selector(showDetails:)
+                  forControlEvents:UIControlEventTouchUpInside];
+            customPinView.rightCalloutAccessoryView = rightButton;
+            
+            return customPinView;
+        }
+        else
+        {
+            pinView.annotation = annotation;
+        }
+        return pinView;
+    }
+    
+    return nil;
+    /*
+    
     MKAnnotationView *aView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"MapVC"];
     if (!aView) {
         aView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MapVC"];
         aView.canShowCallout = YES;
-        aView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+//        aView.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
         // could put a rightCalloutAccessoryView here
     }
     
-    aView.annotation = annotation;
-    [(UIImageView *)aView.leftCalloutAccessoryView setImage:nil];
+//    aView.annotation = annotation;
+    aView.enabled = YES;
+//    [(UIImageView *)aView.leftCalloutAccessoryView setImage:nil];
     
     return aView;
+     */
 }
 
 //- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)aView
@@ -243,13 +232,14 @@
 //    [(UIImageView *)aView.leftCalloutAccessoryView setImage:image];
 //}
 
+/*
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     NSLog(@"callout accessory tapped for annotation %@", [view.annotation title]);
 }
+*/
 
-
-#pragma mark - Rotation support
+#pragma mark - Rotation Support
 
 
 // Ensure that the view controller supports rotation and that the split view can therefore show in both portrait and landscape.
@@ -261,7 +251,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-	[self configureView];
+//	[self configureView];
 }
 
 @end

@@ -19,7 +19,7 @@
 #import <MapKit/MapKit.h>
 
 
-@interface Turbine : NSObject <NSCoding,MKAnnotation> {
+@interface Turbine : NSObject <NSCoding, MKAnnotation> {
     
     NSString *_turbineModel;
     NSString *_turbineHeight;
@@ -27,6 +27,7 @@
     NSString *_turbineLatitude;
     NSString *_turbineLongitude;
     NSString *_turbineAltitude;
+
 }
 
 @property (nonatomic, retain) NSString *turbineModel;
@@ -36,5 +37,9 @@
 @property (nonatomic, retain) NSString *turbineLongitude;
 @property (nonatomic, retain) NSString *turbineAltitude;
 
+
+
+
+-(id)initWithName:(NSString *)model height:(NSString *)height latitude:(NSString *)latitude longitude:(NSString *)longitude altitude:(NSString *)altitude;
 
 @end
